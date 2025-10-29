@@ -1,0 +1,30 @@
+# =========================
+# PYTHON PROJECT .gitignore
+# =========================
+
+# 🔸 File bytecode Python
+*.pyc
+__pycache__/
+
+# 🔸 Virtual environment (folder environment lokal)
+myenv/
+
+# 🔸 File konfigurasi & rahasia (jangan pernah upload)
+.env
+login.json
+*.ini
+*.cfg
+
+# 🔸 Editor/IDE cache
+.vscode/
+.idea/
+
+# 🔸 Cache, log, dan file sementara
+*.log
+.cache/
+*.tmp
+*.bak
+
+# 🔸 Data sementara atau hasil pengujian
+test/
+tmp/
