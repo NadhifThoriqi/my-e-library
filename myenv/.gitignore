@@ -1,6 +1,12 @@
-# created by virtualenv automatically
+# File Python bytecode
 *
-
+*.pyc
 __pycache__/
-test/
+
+# Virtual environment
 myenv/
+
+# Rahasia
+.env
+static/lib/json/login.json
+test/
