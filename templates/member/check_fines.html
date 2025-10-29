@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Cek Denda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/member.css') }}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <div class="logo"><i class="fas fa-book-open"></i> E-Library</div>
+                <div class="user-info">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <div class="lang-option active" data-lang="id">ID</div> 
+                        <div class="lang-option" data-lang="en">EN</div>
+                    </div>
+                    <div class="member-details">
+                        <span>{{name}}</span>
+                        <span class="email">{{email}}</span>
+                    </div>
+                    <a href="/logout/" class="logout"><i class="fas fa-sign-out-alt"></i><div data-key="logout"> Keluar</div></a>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="/dashboard/"><i class="fas fa-th-large"></i><div data-key="dashboard"> Dasbor</div></a>
+                <a href="/search/"><i class="fas fa-search"></i><div data-key="search"> Cari</div></a>
+                <a href="/transaction/"><i class="fas fa-receipt"></i><div data-key="transactions"> Transaksi</div></a>
+                <a href="/check_fines/" class="active"><i class="fas fa-dollar-sign"></i><div data-key="checkFines"> Cek Denda</div></a>
+            </nav>
+        </header>
+
+        <main class="content-area">
+            <h1 data-key="checkFines">Cek Denda</h1>
+            <div class="fines-summary">
+                <div class="fines-card-summary">
+                    <i class="fas fa-dollar-sign"></i>
+                    <p class="fine-amount">Rp 10.000</p>
+                    <p class="label" data-key="totalFines">Total Denda</p>
+                </div>
+            </div>
+
+            <h2 data-key="fineTransactions">Transaksi Denda</h2>
+            <div class="transaction-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-key="bookTitle">Judul Buku</th>
+                            <th data-key="borrowDate">Tanggal Pinjam</th>
+                            <th data-key="dueDate">Jatuh Tempo</th>
+                            <th data-key="returnDate">Tanggal Kembali</th>
+                            <th data-key="fineAmount">Jumlah Denda</th>
+                            <th data-key="status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1984<div class="author">George Orwell</div></td>
+                            <td>24 Sep 2025</td>
+                            <td><span class="overdue-text">1 Okt 2025</span></td>
+                            <td>6 Okt 2025</td>
+                            <td><span class="fine-paid">Rp 10.000</span></td>
+                            <td><span class="status status-dikembalikan" data-key="returned">Dikembalikan</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/anggota.js') }}"></script>
+</body>
+</html>

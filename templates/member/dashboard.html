@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Dasbor Anggota</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/member.css') }}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <!-- Baris atas: logo + user info -->
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i> E-Library
+                </div>
+                <div class="user-info">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <div class="lang-option active" data-lang="id">ID</div> 
+                        <div class="lang-option" data-lang="en">EN</div>
+                    </div>
+                    <div class="member-details">
+                        <span>{{name}}</span>
+                        <span class="email">{{email}}</span>
+                    </div>
+                    <a href="/logout/" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div data-key="logout">
+                             Keluar
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigasi utama dua baris -->
+            <nav class="main-nav">
+                <a href="/dashboard/" class="active"><i class="fas fa-th-large"></i><div  data-key="dashboard"> Dasbor</div></a>
+                <a href="/search/"><i class="fas fa-search"></i><div data-key="search"> Cari</div></a>
+                <a href="/transaction/"><i class="fas fa-receipt"></i><div data-key="transactions"> Transaksi</div></a>
+                <a href="/check_fines/"><i class="fas fa-dollar-sign"></i><div data-key="checkFines"> Cek Denda</div></a>
+            </nav>
+        </header>
+
+        <main class="content-area">
+            <h1><x data-key="welcome">Selamat Datang</x>, {{name}}!</h1>
+
+            <!-- Statistik Dasbor -->
+            <div class="stats-cards">
+                <div class="card card-dipinjam">
+                    <i class="fas fa-book"></i>
+                    <p class="number">2</p>
+                    <p class="label" data-key="borrowed">Dipinjam</p>
+                </div>
+                <div class="card card-dikembalikan">
+                    <i class="fas fa-check-circle"></i>
+                    <p class="number">2</p>
+                    <p class="label" data-key="returned">Dikembalikan</p>
+                </div>
+                <div class="card card-denda">
+                    <i class="fas fa-dollar-sign"></i>
+                    <p class="number">Rp 0</p>
+                    <p class="label" data-key="totalFines">Total Denda</p>
+                </div>
+            </div>
+
+            <h2 data-key="borrowed">Dipinjam</h2>
+            <div class="borrowed-books">
+                <div class="borrow-card">
+                    <div class="book-info">
+                        <h3>Laskar Pelangi</h3>
+                        <p class="author">Andrea Hirata</p>
+                    </div>
+                    <div class="book-dates">
+                        <div class="date-item">
+                            <i class="far fa-calendar"></i>
+                            <span>11 Okt 2025</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="label"><x data-key="dueDate">Jatuh Tempo</x>:</span>
+                            <span class="due">18 Okt 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="borrow-card overdue">
+                    <div class="book-info">
+                        <h3>Harry Potter and the Philosopher's Stone</h3>
+                        <p class="author">J.K. Rowling</p>
+                    </div>
+                    <div class="book-dates">
+                        <div class="date-item">
+                            <i class="far fa-calendar"></i>
+                            <span>29 Sep 2025</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="label"><x data-key="dueDate">Jatuh Tempo</x>:</span>
+                            <span class="due overdue-text">6 Okt 2025</span>
+                            <span class="status-tag">Terlambat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='scripts/anggota.js') }}"></script> -->
+</body>
+</html>

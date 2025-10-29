@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Anggota</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/admin.css') }}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i> E-Library
+                </div>
+                <div class="admin-info">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <div class="lang-option active" data-lang="id">ID</div> 
+                        <div class="lang-option" data-lang="en">EN</div>
+                    </div>
+                    <div class="admin-details">
+                        <span>{{name}}</span>
+                        <span class="email">{{email}}</span>
+                    </div>
+                    <a href="/logout/" class="logout"><i class="fas fa-sign-out-alt"></i><div data-key="logout"> Keluar</div></a>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="/dashboard/"><i class="fas fa-th-large"></i><div data-key="dashboard"> Dasbor</div></a>
+                <a href="/books/"><i class="fas fa-book"></i><div data-key="books"> Buku</div></a>
+                <a href="/members/" class="active"><i class="fas fa-user-group"></i> <div data-key="members">Anggota</div></a>
+                <a href="/reports/"><i class="fas fa-file-alt"></i><div data-key="reports">Laporan</div></a>
+            </nav>
+        </header>
+
+        <main class="member-content">
+            <h1 id="page-title" data-key="members">Anggota</h1>
+            <p>Admin: {{data['admin']|length}}, Staff: {{data['staff']|length}}, Anggta: {{data['member']|length}}</p>
+            <div class="actions-bar member-actions-bar">
+                <div style="flex-grow: 1;"></div> 
+                <button class="btn-primary" id="openAddMemberModal" data-key="addMember">
+                    <i class="fas fa-plus"></i> Tambah Anggota
+                </button>
+            </div>
+
+            <div class="member-table-container book-table-container">
+                <table class="member-table book-table">
+                    <thead>
+                        <tr>
+                            <th data-key="memberNumber">Nomor Anggota</th>
+                            <th data-key="fullName">Nama Lengkap</th>
+                            <th data-key="email">Email</th>
+                            <th data-key="phone">Telepon</th>
+                            <th data-key="status">Status</th>
+                            <th data-key="actions">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="member-list-body">
+                        {%if data != None%}
+                            {%for x in data.keys()%}
+                                {%if x not in []%}
+                                    {%for y in data[x].keys()%}
+                                        <tr>
+                                            <td>{{loop.index}}</td>
+                                            <td>{{data[x][y]["name"]}}</td>
+                                            <td>{{y}}</td>
+                                            <td>{{data[x][y]["telepon"]}}</td>
+                                            <td><span class="status status-{{data[x][y]['status']}}" data-member-status-key="{{data[x][y]['status']}}">------</span></td>
+                                            <td class="action-buttons">
+                                                <i class="fas fa-edit edit-icon" title="Edit"></i>
+                                                <i class="fas fa-trash-alt delete-icon" title="Hapus"></i>
+                                            </td>
+                                        </tr>
+                                    {%endfor%}
+                                {%endif%}
+                            {%endfor%}
+                        {%endif%}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay hidden" id="addMemberModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-key="addMember">Tambah Anggota</h2>
+                <button class="close-button" id="closeAddMemberModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="addMemberForm">
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="memberFullName" data-key="fullName">Nama Lengkap</label>
+                            <input type="text" id="memberFullName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                         <div class="form-group">
+                            <label for="memberEmail" data-key="email">Email</label>
+                            <input type="email" id="memberEmail" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="memberPhone" data-key="phone">Telepon</label>
+                            <input type="tel" id="memberPhone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="memberAddress" data-key="address">Alamat</label>
+                            <input type="text" id="memberAddress">
+                        </div>
+                         <div class="form-group">
+                            <label for="memberCity" data-key="city">Kota</label>
+                            <input type="text" id="memberCity">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="memberStatus" data-key="status">Status</label>
+                        <select id="memberStatus" required>
+                            <option value="active" data-key="active">Aktif</option>
+                            <option value="inactive" data-key="inactive">Nonaktif</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelAddMember" data-key="cancel">Batal</button>
+                <button class="btn btn-primary" data-key="save">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/admin.js') }}"></script>
+</body>
+</html>

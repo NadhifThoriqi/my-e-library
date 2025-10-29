@@ -1,0 +1,25 @@
+{
+    "401": {
+        "judul": "Sesi Anda Telah Habis",
+        "isi": "Demi keamanan, sesi Anda telah berakhir karena tidak ada aktivitas.",
+        "respon" : "Harap login kembali untuk melanjutkan aktivitas Anda."
+    },
+
+    "403": {
+        "judul": "Ups, Ini Bukan Jalan Anda",
+        "isi": "Anda tidak memiliki izin yang cukup untuk mengakses halaman ini.",
+        "respon" : "Mari, kami antar kembali ke Dashboard Anda."
+    },
+
+    "404": {
+        "judul": "Kamu tersesat di antara halaman?",
+        "isi": "Tapi jangan khawatir, setiap petualangan punya jalan pulang.",
+        "respon" : "Klik tombol di bawah untuk kembali ke Dashboard."
+    },
+
+    "503": {
+        "judul": "Servernya Sedang Istirahat",
+        "isi": "Sepertinya server kami butuh sedikit waktu untuk mengambil napas. Ini hanya sementara.",
+        "respon": "Sambil menunggu, Anda bisa menyeduh kopi. Coba muat ulang beberapa saat lagi."
+    }
+}

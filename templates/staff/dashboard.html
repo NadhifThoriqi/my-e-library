@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Dasbor Staff</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/staff.css') }}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i> E-Library
+                </div>
+                <div class="user-info">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <div class="lang-option active" data-lang="id">ID</div> 
+                        <div class="lang-option" data-lang="en">EN</div>
+                    </div>
+                    <div class="staff-details">
+                        <span>{{name}}</span>
+                        <span class="email">{{email}}</span>
+                    </div>
+                    <a href="/logout/" class="logout"><i class="fas fa-sign-out-alt"></i><div data-key="logout"> Keluar</div></a>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="/dashboard/" class="active"><i class="fas fa-th-large"></i><div data-key="dashboard"> Dasbor</div></a>
+                <a href="/books/"><i class="fas fa-book"></i><div data-key="books"> Buku</div></a>
+                <a href="/borrow_book/"><i class="fas fa-calendar-plus"></i><div data-key="borrowBook"> Pinjam Buku</div></a>
+                <a href="/return_book/"><i class="fas fa-undo"></i><div data-key="returnBook"> Kembalikan Buku</div></a>
+            </nav>
+        </header>
+
+        <main class="content-area">
+            <h1>Dasbor</h1>
+
+            <div class="stats-cards">
+                <div class="card card-dipinjam">
+                    <i class="fas fa-chart-line"></i>
+                    <p class="number">4</p>
+                    <p class="label" data-key="totalBorrowed">Total Dipinjam</p>
+                </div>
+                <div class="card card-terlambat">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p class="number">1</p>
+                    <p class="label" data-key="overdue">Terlambat</p>
+                </div>
+                <div class="card card-dikembalikan">
+                    <i class="fas fa-check-circle"></i>
+                    <p class="number">6</p>
+                    <p class="label" data-key="totalReturned">Total Dikembalikan</p>
+                </div>
+            </div>
+
+            <h2 data-key="recentTransactions">Transaksi Terbaru</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-key="bookTitle">Judul Buku</th>
+                            <th data-key="fullName">Nama Lengkap</th>
+                            <th data-key="borrowDate">Tanggal Pinjam</th>
+                            <th data-key="dueDate">Jatuh Tempo</th>
+                            <th data-key="status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The Psychology of Money</td>
+                            <td>Ahmad Wijaya</td>
+                            <td>11 Okt 2025</td>
+                            <td>18 Okt 2025</td>
+                            <td><span class="status status-dipinjam" data-key="borrowed">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bumi Manusia</td>
+                            <td>Jane Smith</td>
+                            <td>11 Okt 2025</td>
+                            <td>18 Okt 2025</td>
+                            <td><span class="status status-dipinjam" data-key="borrowed">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Laskar Pelangi</td>
+                            <td>John Doe</td>
+                            <td>11 Okt 2025</td>
+                            <td>18 Okt 2025</td>
+                            <td><span class="status status-dipinjam" data-key="borrowed">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Atomic Habits</td>
+                            <td>Ahmad Wijaya</td>
+                            <td>4 Okt 2025</td>
+                            <td>11 Okt 2025</td>
+                            <td><span class="status status-dikembalikan" data-key="returned">Dikembalikan</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/staff.js') }}"></script>
+</body>
+</html>

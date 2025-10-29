@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Pinjam Buku</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/staff.css') }}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i> E-Library
+                </div>
+                <div class="user-info">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <div class="lang-option active" data-lang="id">ID</div> 
+                        <div class="lang-option" data-lang="en">EN</div>
+                    </div>
+                    <div class="staff-details">
+                        <span>{{name}}</span>
+                        <span class="email">{{email}}</span>
+                    </div>
+                    <a href="/logout/" class="logout"><i class="fas fa-sign-out-alt"></i><div data-key="logout"> Keluar</div></a>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="/dashboard/"><i class="fas fa-th-large"></i><div data-key="dashboard"> Dasbor</div></a>
+                <a href="/books/"><i class="fas fa-book"></i><div data-key="books"> Buku</div></a>
+                <a href="/borrow_book/" class="active"><i class="fas fa-calendar-plus"></i><div data-key="borrowBook"> Pinjam Buku</div></a>
+                <a href="/return_book/"><i class="fas fa-undo"></i><div data-key="returnBook"> Kembalikan Buku</div></a>
+            </nav>
+        </div>
+
+        <main class="content-area">
+            <h1 data-key="borrowBook">Pinjam Buku</h1>
+
+            <div class="actions-bar" style="justify-content: flex-end;">
+                <button class="btn-primary" id="openBorrowBookModal">
+                    <i class="fas fa-plus"></i><div data-key="borrowBook"> Pinjam Buku</div>
+                </button>
+            </div>
+            
+            <h2 data-key="borrowed">Dipinjam</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-key="bookTitle">Judul Buku</th>
+                            <th data-key="fullName">Nama Lengkap</th>
+                            <th data-key="borrowDate">Tanggal Pinjam</th>
+                            <th data-key="dueDate">Jatuh Tempo</th>
+                            <th data-key="status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The Psychology of Money</td>
+                            <td>Ahmad Wijaya</td>
+                            <td>11 Okt 2025</td>
+                            <td>18 Okt 2025</td>
+                            <td><span class="status status-dipinjam" data-status-key="borrowed">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bumi Manusia</td>
+                            <td>Jane Smith</td>
+                            <td>11 Okt 2025</td>
+                            <td>18 Okt 2025</td>
+                            <td><span class="status status-dipinjam" data-status-key="borrowed">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Laskar Pelangi</td>
+                            <td>John Doe</td>
+                            <td>11 Okt 2025</td>
+                            <td>18 Okt 2025</td>
+                            <td><span class="status status-dipinjam" data-status-key="borrowed">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td>Harry Potter and the Philosopher's Stone</td>
+                            <td>John Doe</td>
+                            <td>29 Sep 2025</td>
+                            <td><span class="status-overdue">6 Okt 2025</span></td>
+                            <td><span class="status status-terlambat" data-status-key="overdue">Terlambat</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    
+    <div class="modal-overlay hidden" id="borrowBookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-key="borrowBook">Pinjam Buku</h2>
+                <button class="close-button" id="closeBorrowBookModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="borrowBookForm">
+                    <div class="form-group full-width">
+                        <label for="memberSelect" data-key="selectMember">Pilih Anggota</label>
+                        <select id="memberSelect" required>
+                            <option value="" disabled selected data-key="selectMember">Pilih Anggota</option>
+                            <option value="mem1">Ahmad Wijaya</option>
+                            <option value="mem2">Jane Smith</option>
+                            <option value="mem3">John Doe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="bookSelect" data-key="selectBook">Pilih Buku</label>
+                        <select id="bookSelect" required>
+                            <option value="" disabled selected data-key="selectBook">Pilih Buku</option>
+                            <option value="book1">The Psychology of Money</option>
+                            <option value="book2">Bumi Manusia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="borrowDays" data-key="borrowDays">Hari Peminjaman</label>
+                        <input type="number" id="borrowDays" value="7" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelBorrowBook" data-key="cancel">Batal</button>
+                <button class="btn-primary" data-key="borrowBook">Pinjam Buku</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/staff.js') }}"></script>
+</body>
+</html>

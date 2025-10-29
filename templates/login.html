@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Masuk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="login-container">
+        
+        <div class="header">
+            <div class="language-selector">
+                <span id="lang-id" class="lang-option active" data-lang="id">ID</span>
+                <span>/</span>
+                <span id="lang-en" class="lang-option" class="lang-option"   data-lang="en">EN</span>
+            </div>
+            <div class="user-icon">
+                <i class="fas fa-id-card"></i>
+            </div>
+        </div>
+
+        <div class="login-box">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+                <h1>E-Library</h1>
+                <p class="subtitle" data-key="subtitle">Sistem Informasi Perpustakaan</p>
+            </div>
+
+            <form method="post" action="/login/" id="loginForm">
+                <div class="form-group">
+                    <label for="username" data-key="username-label">Nama Pengguna</label>
+                    <input type="text" name="username" id="username" data-key-placeholder="username-placeholder" placeholder="Nama Pengguna" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" data-key="password-label">Kata Sandi</label>
+                    <div class="password-container"> 
+                        <input type="password" name="password" id="password" data-key-placeholder="password-placeholder" placeholder="Kata Sandi" required>
+                        <i class="fas fa-eye show-hide-toggle" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <button type="submit" value="Kirim" class="login-button" value="login" data-key="login-button">Masuk</button>
+            </form>
+
+            <div class="demo-account-area">
+                <p class="demo-title" data-key="demo-title">Akun Demo</p>
+                <div class="demo-list">
+                    <div class="demo-item">
+                        <span class="role">Admin:</span>
+                        <span class="credentials">admin / password123</span>
+                    </div>
+                    <div class="demo-item">
+                        <span class="role">Staff:</span>
+                        <span class="credentials">staff / password123</span>
+                    </div>
+                    <div class="demo-item">
+                        <span class="role">Member:</span>
+                        <span class="credentials">member1 / password123</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        © Made with Fenergent
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+</body>
+</html>

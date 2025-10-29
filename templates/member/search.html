@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library - Cari Buku</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/member.css') }}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i> E-Library
+                </div>
+                <div class="user-info">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <div class="lang-option active" data-lang="id">ID</div> 
+                        <div class="lang-option" data-lang="en">EN</div>
+                    </div>
+                    <div class="member-details">
+                        <span>{{name}}</span>
+                        <span class="email">{{email}}</span>
+                    </div>
+                    <a href="/logout/" class="logout"><i class="fas fa-sign-out-alt"></i><div data-key="logout"> Keluar</div></a>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="/dashboard/"><i class="fas fa-th-large"></i><div  data-key="dashboard"> Dasbor</div></a>
+                <a href="/search/" class="active"><i class="fas fa-search"></i><div  data-key="search"> Cari</div></a>
+                <a href="/transaction/"><i class="fas fa-receipt"></i><div  data-key="transactions"> Transaksi</div></a>
+                <a href="/check_fines/"><i class="fas fa-dollar-sign"></i><div  data-key="checkFines"> Cek Denda</div></a>
+            </nav>
+        </header>
+
+        <main class="content-area">
+            <h1 data-key="searchForBooksByTitleAuthorOrISBN">Cari buku berdasarkan judul, pengarang, atau ISBN</h1>
+
+            <div class="search-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" data-key-placeholder="searchForBooksByTitleAuthorOrISBN" placeholder="Cari buku berdasarkan judul, pengarang, atau ISBN">
+                </div>
+                <button class="btn-primary" data-key="search">Cari</button>
+            </div>
+
+            <div class="category-filter">
+                <button class="active">All</button>
+                <button data-key="fiction">Fiction</button>
+                <button data-key="nonFiction">Non-Fiction</button>
+                <button data-key="technology">Technology</button>
+                <button data-key="history">History</button>
+                <button data-key="selfHelp">Self-Help</button>
+                <button data-key="business">Business</button>
+                <button data-key="psychology">Psychology</button>
+                <button data-key="fantasy">Fantasy</button>
+                <button data-key="biography">Biography</button>
+                <button data-key="finance">Finance</button>
+            </div>
+
+            <div class="book-grid">
+                <div class="book-card">
+                    <i class="fas fa-book icon-book"></i>
+                    <span class="available-tag">4 Tersedia</span>
+                    <h3>Laskar Pelangi</h3>
+                    <p class="author">Andrea Hirata</p>
+                    <p class="book-meta" data-key="fiction">Fiction | 2005</p>
+                    <p class="book-meta">Novel tentang kehidupan anak-anak di Belitung</p>
+                </div>
+                <div class="book-card">
+                    <i class="fas fa-book icon-book"></i>
+                    <span class="available-tag">3 Tersedia</span>
+                    <h3>Bumi Manusia</h3>
+                    <p class="author">Pramoedya Ananta Toer</p>
+                    <p class="book-meta" data-key="fiction">Fiction | 1980</p>
+                    <p class="book-meta">Novel sejarah Indonesia masa kolonial</p>
+                </div>
+                <div class="book-card">
+                    <i class="fas fa-book icon-book"></i>
+                    <span class="available-tag">5 Tersedia</span>
+                    <h3>The Psychology of Money</h3>
+                    <p class="author">Morgan Housel</p>
+                    <p class="book-meta" data-key="nonFiction">Non-Fiction | 2020</p>
+                    <p class="book-meta">Timeless lessons on wealth, greed, and happiness</p>
+                </div>
+                <div class="book-card">
+                    <i class="fas fa-book icon-book"></i>
+                    <span class="available-tag">8 Tersedia</span>
+                    <h3>Clean Code</h3>
+                    <p class="author">Robert C. Martin</p>
+                    <p class="book-meta" data-key="technology">Technology | 2008</p>
+                    <p class="book-meta">Pedoman dasar untuk menulis kode yang bersih dan profesional</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/anggota.js') }}"></script>
+</body>
+</html>

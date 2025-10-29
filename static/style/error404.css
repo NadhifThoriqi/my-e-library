@@ -1,0 +1,77 @@
+/* Pengaturan dasar untuk body */
+body {
+    font-family: 'Montserrat', sans-serif; /* Font yang mirip dengan gambar */
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    
+    /* Menggunakan flexbox untuk memusatkan konten */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Memastikan halaman penuh */
+    text-align: center; /* Meratakan teks di tengah */
+}
+
+/* Kontainer utama yang membungkus semua elemen */
+.container {
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Judul "404" */
+h1 {
+    font-size: 8rem; /* Ukuran sangat besar */
+    font-weight: 900; /* Sangat tebal */
+    color: #4A4A4A; /* Abu-abu gelap */
+    margin: 0;
+    line-height: 1;
+}
+
+/* Sub-judul "Kamu tersesat..." */
+h2 {
+    font-size: 1.75rem; /* Sedikit lebih besar dari teks normal */
+    font-weight: 700; /* Tebal */
+    color: #000000; /* Hitam */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Teks paragraf */
+p {
+    font-size: 1rem;
+    color: #555; /* Abu-abu */
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+.img {
+    background-image: url('../assets/gambar\ buku\ 404.webp'); /* perbaikan path gambar */
+    height: 350px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* margin-bottom: 5px; */
+}
+
+/* Tombol "Kembali ke Beranda" */
+.home-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #007BFF;
+    /*Warnabiru(bisadiganti)*/color: #ffffff;
+    text-decoration: none;
+    /*Menghilangkangarisbawahtautan*/font-weight: 700;
+    border-radius: 5px;
+    /*Sudutsedikitmelengkung*/transition: background-color 0.3s ease;
+     /* Efek hover:; */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+/* Efek saat kursor mouse di atas tombol */
+.home-button:hover {
+    background-color: #0056b3; /* Warna biru lebih gelap */
+}

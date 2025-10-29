@@ -1,0 +1,14 @@
+{
+    "admin": {
+        "nadhifthoriqi@admin.com": {"name": "Nadhif Thoriqi", "password": "admin123", "telepon": "085293159782", "status": "active"}
+    },
+    
+    "staff": {
+        "nadhifthoriqi@staff.com": {"name": "Nadhif Thoriqi", "password": "staff123", "telepon": "085293159782", "status": "active"}
+    },
+
+    "member": {
+        "nadhifthoriqi@member.com": {"name":"Nadhif Thoriqi", "password": "member123", "telepon": "085293159782", "status": ""},
+        "nadhifthoriqi@gmail.com": {"name":"Nadhif Thoriqi", "password": "member123", "telepon": "085293159782", "status": "notActive"}
+    }
+}
