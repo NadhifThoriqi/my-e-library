@@ -40,6 +40,3 @@ class Error:
         for x in gets_data("error.code"):
             if x == self.status_codes:
                 return [y for y in gets_data("error.code")[x].values()]
-
-for x in gets_data("books"):
-    print(gets_data("books")[x]["author"])
