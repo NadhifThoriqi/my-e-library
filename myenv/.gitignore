@@ -1,12 +1,1 @@
-# File Python bytecode
 *
-*.pyc
-__pycache__/
-
-# Virtual environment
-myenv/
-
-# Rahasia
-.env
-static/lib/json/login.json
-test/
