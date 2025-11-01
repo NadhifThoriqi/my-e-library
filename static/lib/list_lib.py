@@ -14,9 +14,11 @@ class Login:
         if not os.path.exists(self.list()):
             os.makedirs(os.path.dirname(self.list()), exist_ok=True) # Pastikan folder ada
             default_data = {
-                "directory": {
-                    "repo_url": "",
-                    "branch": ""
+                "status": {
+                    "email": {
+                        "name": "", 
+                        "password": ""
+                    }
                 }
             }
             with open(self.list(), "w", encoding="utf-8") as f:
