@@ -1,5 +1,9 @@
 { 
   "id": {
+    "libraryInformationSystem": "Sistem Informasi Perpustakaan",
+    "username": "Nama Pengguna",
+    "password": "Kata Sandi",
+    "login": "Masuk",
     "searchForBooksByTitleAuthorOrISBN": "Cari buku berdasarkan judul, pengarang, atau ISBN", 
     "dashboard": "Dasbor",
     "books": "Buku",
@@ -54,6 +58,10 @@
   },
 
   "en": {
+    "libraryInformationSystem": "Library Information System",
+    "username": "Username",
+    "password": "password",
+    "login": "Login",
     "searchForBooksByTitleAuthorOrISBN": "Search for books by title, author, or ISBN",
     "dashboard": "Dashboard",
     "books": "Books",

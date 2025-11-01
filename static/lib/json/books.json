@@ -1,8 +1,8 @@
 {
-    "Laskar Pelangi": {"author": "Andrea Hirata", "category": "Fiction", "stock": 5, "borrowed": 1},
-    "Bumi Manusia": {"author": "Pramoedya Ananta Toer", "category": "Fiction", "stock": 4, "borrowed": 1},
-    "The Psychology of Money": {"author": "Morgan Housel", "category": "Non-Fiction", "stock": 6, "borrowed": 2},
-    "Clean Code": {"author": "Robert C. Martin", "category": "Technology", "stock": 8, "borrowed": 0},
-    "Sapiens: A Brief History of Humankind": {"author": "Yuval Noah Harari", "category": "History", "stock": 5, "borrowed": 0},
-    "Atomic Habits": {"author": "James Clear", "category": "Self-Help", "stock": 7, "borrowed": 0}
+    "Laskar Pelangi": {"author": "Andrea Hirata", "isbn": "978-979-1227-78-0", "category": "Fiction", "stock": 5, "borrowed": 1},
+    "Bumi Manusia": {"author": "Pramoedya Ananta Toer", "isbn": "978-979-461-22-6", "category": "Fiction", "stock": 4, "borrowed": 1},
+    "The Psychology of Money": {"author": "Morgan Housel", "isbn": "978-085-7976-89-0", "category": "Non-Fiction", "stock": 6, "borrowed": 2},
+    "Clean Code": {"author": "Robert C. Martin", "isbn": "978-013-2350-88-4", "category": "Technology", "stock": 8, "borrowed": 0},
+    "Sapiens: A Brief History of Humankind": {"author": "Yuval Noah Harari", "isbn": "978-006-2316-09-7", "category": "History", "stock": 5, "borrowed": 0},
+    "Atomic Habits": {"author": "James Clear", "isbn": "978-073-5211-29-2", "category": "Self-Help", "stock": 7, "borrowed": 0}
 }

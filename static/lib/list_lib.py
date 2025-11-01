@@ -1,5 +1,5 @@
 from flask import abort
-import json
+import json, os
 
 def gets_data(libs: str) -> list|dict:
     try:
@@ -10,6 +10,18 @@ def gets_data(libs: str) -> list|dict:
         return abort(405)
 
 class Login:
+    def __init__(self):
+        if not os.path.exists(self.list()):
+            os.makedirs(os.path.dirname(self.list()), exist_ok=True) # Pastikan folder ada
+            default_data = {
+                "directory": {
+                    "repo_url": "",
+                    "branch": ""
+                }
+            }
+            with open(self.list(), "w", encoding="utf-8") as f:
+                json.dump(default_data, f, indent=4, ensure_ascii=False)
+
     def list(self):
         return gets_data("login")
     

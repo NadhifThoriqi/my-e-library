@@ -41,7 +41,7 @@
             <div class="actions-bar">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cari buku berdasarkan judul, pengarang" id="search-input">
+                    <input type="text" data-key-placeholder="searchForBooksByTitleAuthorOrISBN" id="search-input">
                 </div>
                 <button class="btn-primary" id="openAddBookModal" data-key="addBook">
                     <i class="fas fa-plus"></i> Tambah Buku
@@ -63,7 +63,7 @@
                     <tbody id="book-list-body">
                         {%for x in books%}
                             <tr>
-                                <td>{{x}}<div class="isbn">978-979-1227-78-0</div></td>
+                                <td>{{x}}<div class="isbn">{{books[x]['isbn']}}</div></td>
                                 <td>{{books[x]['author']}}</td>
                                 <td><span class="category-tag category-{{books[x]['category']}}">{{books[x]['category']}}</span></td>
                                 <td>{{books[x]['stock']}}</td>

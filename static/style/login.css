@@ -171,47 +171,6 @@ h1 {
     -o-transform: scale(0.99);
 }
 
-/* Akun Demo */
-.demo-account-area {
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    text-align: center;
-}
-
-.demo-title {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 15px;
-}
-
-.demo-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 13px;
-    color: #555;
-    padding: 0 20px;
-}
-
-.demo-item {
-    display: flex;
-    justify-content: space-between;
-}
-
-.demo-item .role {
-    font-weight: 500;
-    color: #333;
-    width: 60px; /* Untuk membuat sejajar */
-    text-align: left;
-}
-
-.demo-item .credentials {
-    font-family: monospace;
-    color: #777;
-    text-align: right;
-    flex-grow: 1;
-}
-
 /* Footer "Made with Fenergent" */
 .footer {
     position: absolute;
