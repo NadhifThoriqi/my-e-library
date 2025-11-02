@@ -53,6 +53,7 @@
                     <thead>
                         <tr>
                             <th data-key="bookTitle">Judul Buku</th>
+                            <th>ISBN</th>
                             <th data-key="author">Pengarang</th>
                             <th data-key="category">Kategori</th>
                             <th data-key="stock">Stok</th>
@@ -63,9 +64,10 @@
                     <tbody id="book-list-body">
                         {%for x in books%}
                             <tr>
-                                <td>{{x}}<div class="isbn">{{books[x]['isbn']}}</div></td>
+                                <td>{{x}}</td>
+                                <td>{{books[x]['isbn']}}</td>
                                 <td>{{books[x]['author']}}</td>
-                                <td><span class="category-tag category-{{books[x]['category']}}">{{books[x]['category']}}</span></td>
+                                <td><span class="category-tag category-{{books[x]['category']}}" data-key="{{books[x]['category']}}">{{books[x]['category']}}</span></td>
                                 <td>{{books[x]['stock']}}</td>
                                 <td>{{books[x]['stock']-books[x]['borrowed']}}</td>
                                 <td class="action-buttons">
@@ -88,56 +90,56 @@
                 <button class="close-button" id="closeAddBookModal"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
-                <form id="addBookForm">
+                <form id="addBookForm" method="post" action="/add/book/">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="judulBuku" data-key="bookTitle">Judul Buku</label>
-                            <input type="text" id="judulBuku" required>
+                            <input type="text" id="judulBuku" name="book_title" required>
                         </div>
                         <div class="form-group">
                             <label for="pengarang" data-key="author">Pengarang</label>
-                            <input type="text" id="pengarang" required>
+                            <input type="text" id="pengarang" name="author">
                         </div>
                     </div>
 
                     <div class="form-row">
                          <div class="form-group">
                             <label for="kategori" data-key="category">Kategori</label>
-                            <input type="text" id="kategori" required>
+                            <input type="text" id="kategori" name="category" required>
                         </div>
                          <div class="form-group">
                             <label for="isbn" data-key="isbn">ISBN</label>
-                            <input type="text" id="isbn" required>
+                            <input type="text" id="isbn" name="isbn" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="penerbit" data-key="publisher">Penerbit</label>
-                            <input type="text" id="penerbit">
+                            <input type="text" id="penerbit" name="publisher">
                         </div>
                          <div class="form-group">
                             <label for="tahun" data-key="year">Tahun</label>
-                            <input type="number" id="tahun" value="2025" required>
+                            <input type="number" id="tahun" value="2025", name="year" required>
                         </div>
                     </div>
 
                     <div class="form-row single">
                          <div class="form-group">
                             <label for="stok" data-key="stock">Stok</label>
-                            <input type="number" id="stok" value="1" required>
+                            <input type="number" id="stok" value="1" name="stock" required>
                         </div>
                     </div>
                     
                     <div class="form-group full-width">
                         <label for="deskripsi" data-key="description">Deskripsi</label>
-                        <textarea id="deskripsi" rows="4"></textarea>
+                        <textarea id="deskripsi" rows="4" name="description"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cancelAddBook" data-key="cancel">Batal</button>
+                        <button type="submit" value="Kirim" class="btn btn-primary" data-key="save">Simpan</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelAddBook" data-key="cancel">Batal</button>
-                <button class="btn btn-primary" data-key="save">Simpan</button>
             </div>
         </div>
     </div>

@@ -54,7 +54,8 @@
     "checkFines": "Cek Denda",
     "fineTransactions": "Transaksi Denda",
     "fineAmount": "Jumlah Denda",
-    "notActive": "Tidak Aktif"
+    "notActive": "Tidak Aktif",
+    "fiction": "Fiksi"
   },
 
   "en": {
@@ -112,6 +113,7 @@
     "checkFines": "Check Fines",
     "fineTransactions": "Fine Transactions",
     "fineAmount": "Fine Amount",
-    "notActive": "Not Active"
+    "notActive": "Not Active",
+    "fiction": "Fiction"
   }
 }

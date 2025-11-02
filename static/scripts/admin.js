@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelMemberModalBtn = document.getElementById('cancelAddMember');
 
     const memberActionIcons = document.querySelectorAll('.member-table .action-buttons i');
+    const bookActionIcons = document.querySelectorAll('.book-table .action-buttons i');
 
     // --- Navigasi utama ---
     navLinks.forEach(link => {
@@ -56,6 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === addBookModal) closeAddBookModal();
         });
     }
+    
+    // document.getElementById("hapusData").addEventListener("click", () => {
+    // });
+    
+    // --- Aksi tabel anggota ---
+    bookActionIcons.forEach(icon => {
+        icon.addEventListener('click', e => {
+            const row = e.target.closest('tr');
+            const bookName = row ? row.querySelector('td:nth-child(1)').textContent.trim() : 'Nama tidak ditemukan';
+            const action = e.target.classList.contains('delete-icon') ? 'Hapus' : 'Edit';
+            // alert(`${action}: ${bookName}`);
+
+            if (action == 'Hapus'){
+                if (!confirm(`Hapus pengguna ini? (${bookName})`)) return;
+        
+                fetch("/delead/book", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({book: bookName})
+                })
+                .then(r => r.json())
+                .then(d => alert(d.message))
+                .catch(e => console.error(e));
+                row.remove();
+            }
+            else {
+                alert(`${action} anggota: ${bookName}`);
+            }
+        });
+    });
 
     // --- Modal Anggota ---
     function closeAddMemberModal() {

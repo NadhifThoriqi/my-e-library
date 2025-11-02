@@ -9,6 +9,7 @@ body {
     color: #333;
 }
 
+
 a {
     text-decoration: none;
 }
@@ -16,7 +17,6 @@ a {
 .container {
     padding: 0;
 }
-
 /* -----------------------------------------------------------------
    HEADER & NAVIGASI (Versi Dua Baris + User Info di Atas)
    ----------------------------------------------------------------- */
@@ -85,6 +85,7 @@ a {
 .lang-option.active {
     background-color: #007bff;
     color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .admin-details {
@@ -151,42 +152,8 @@ a {
 }
 
 /* Status Aktif */
-.lang-option.active {
-    background-color: #007bff;
-    color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 .lang-option:not(.active):hover {
     background-color: #e2e6e9;
-}
-
-.admin-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-size: 0.9em;
-}
-
-.admin-details .email {
-    color: #007bff;
-}
-
-.logout {
-    text-decoration: none;
-    color: #444;
-    background-color: #fff;
-    padding: 8px 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.logout:hover {
-    background-color: #f0f4f7;
 }
 
 /* Navigasi utama dua baris */
@@ -459,13 +426,6 @@ th {
     color: #333;
 }
 
-.book-table .isbn {
-    font-size: 0.8em;
-    color: #999;
-    margin-top: 2px;
-    font-weight: normal;
-}
-
 /* Tag Kategori */
 .category-tag {
     display: inline-block;
@@ -477,8 +437,8 @@ th {
 }
 
 /* Warna Tag Kategori */
-.category-Fiction { background-color: #e6f7ff; color: #1890ff; }
-.category-Non-Fiction { background-color: #f0f5ff; color: #597ef7; }
+.category-fiction { background-color: #e6f7ff; color: #1890ff; }
+.category-Non-fiction { background-color: #f0f5ff; color: #597ef7; }
 .category-Technology { background-color: #f9f0ff; color: #722ed1; }
 .category-History { background-color: #fff0f6; color: #eb2f96; }
 .category-Self-Help { background-color: #e6fffb; color: #08979c; }

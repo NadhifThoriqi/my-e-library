@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, redirect, request, jsonify, session, abort
-from apps import Error, gets_data, Login, Error
+from apps import Error, Data, Login, Error
 from itsdangerous import URLSafeTimedSerializer
 from markupsafe import escape
 from datetime import timedelta
@@ -61,7 +61,7 @@ def ver(room: str= "dashboard"):
 
     if not verify: return abort(401)
     
-    books = gets_data(libs="books")
+    books = Data().gets(libs="books")
 
     data = ts.loads(verify, salt='verifyEmail', max_age=86_400)
     email = escape(data['name'])
@@ -78,6 +78,41 @@ def ver(room: str= "dashboard"):
         abort(403 if room in Login().room() else 404)
     # else: return redirect(url_for("error404", error=room))
     
+@app.route("/add/book/", methods=["POST"])
+def add():
+    if request.method == "POST":
+        book_title = request.form["book_title"]
+        author = request.form["author"]
+        category = request.form["category"]
+        isbn = request.form["isbn"]
+        publisher = request.form["publisher"]
+        year = request.form["year"]
+        stock = request.form["stock"] or 1
+        description = request.form["description"]
+
+        books = {
+            book_title: {
+                "author": author,
+                "isbn": isbn,
+                "category": category,
+                "publisher": publisher,
+                "year": year,
+                "stock": int(stock),
+                "borrowed": 0,
+                "description": description
+            }
+        }
+        Data().updates(file="books", add=books)
+        return redirect(url_for("ver", room="books"))
+
+@app.route("/delead/book/", methods=["POST"])
+def delead():
+    if request.method == "POST":
+        data = request.get_json()
+        book = data.get("book")
+        Data().deleads("books", delead=book)
+        return redirect(url_for("ver", room="books"))
+
 @app.errorhandler(401)
 def error401(e):
     text = Error("401").call()

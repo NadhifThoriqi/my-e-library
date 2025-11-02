@@ -20,4 +20,4 @@ def cek_folder():
 
 cek_folder()
 
-__all__ = ["Secrets", "Login", "Login", "Error", "gets_data"]
+__all__ = ["Secrets", "Login", "Error", "Data"]
