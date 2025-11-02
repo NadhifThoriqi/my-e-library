@@ -1,37 +1,23 @@
 from flask import abort
-import json, os
+import json
 
 def gets_data(libs: str) -> list|dict:
     try:
-        file = f'static/lib/json/{libs}.json'
+        file = f'apps/json/{libs}.json'
         with open(file, 'r') as x:
             return json.load(x)
-    except:
-        return abort(405)
+    except: return {"Gagal": None}
 
 class Login:
-    def __init__(self):
-        if not os.path.exists(self.list()):
-            os.makedirs(os.path.dirname(self.list()), exist_ok=True) # Pastikan folder ada
-            default_data = {
-                "status": {
-                    "email": {
-                        "name": "", 
-                        "password": ""
-                    }
-                }
-            }
-            with open(self.list(), "w", encoding="utf-8") as f:
-                json.dump(default_data, f, indent=4, ensure_ascii=False)
-
     def list(self):
         return gets_data("login")
     
     def emailKey(self, key: str | None = None): 
-        for y in self.list().keys():
-            for z in self.list()[y].keys():
+        data = gets_data("login")
+        for y in data.keys():
+            for z in data[y].keys():
                 if z == key:
-                    return y, self.list()[y][z]["name"]
+                    return y, data[y][z]["name"]
 
     def room(self, key: str|None=None):
         if key:

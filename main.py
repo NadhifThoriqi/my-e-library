@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, redirect, request, jsonify, session, abort
-from static.lib.next import Secrets
-from static.lib.list_lib import Login, Error, gets_data
+from apps import Error, gets_data, Login, Error
 from itsdangerous import URLSafeTimedSerializer
 from markupsafe import escape
 from datetime import timedelta
