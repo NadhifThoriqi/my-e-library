@@ -3,7 +3,8 @@ from apps import Error, Data, Login, Error
 from itsdangerous import URLSafeTimedSerializer
 from markupsafe import escape
 from datetime import timedelta
-import json
+from threading import Thread
+import json, webview
 
 app = Flask(__name__)
 app.secret_key = "TmFkaGlmX1Rob3JpcWk="
@@ -133,6 +134,20 @@ def error503(e):
     text = Error("503").call()
     return render_template("errorCode.html", error="503", text=text), 503
 
+def run_flask():
+    # return app.run(debug=True, host="0.0.0.0", port=2601)
+    return app.run(debug=False, port=2601)
+
 if __name__ == "__main__":
     # app.run(debug=True, host="192.168.1.6", port=2601)
-    app.run(debug=True, host="0.0.0.0", port=2601)
+    Thread(target=run_flask, daemon=True).start()
+
+    # Buka jendela desktop menggunakan PyWebView
+    webview.create_window(
+        title="Aplikasi Perpustakaan",
+        url="http://127.0.0.1:2601",
+        width=900,
+        height=600,
+        resizable=True
+    )
+    webview.start()

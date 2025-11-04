@@ -1,4 +1,9 @@
 __pycache__/
 test/
 .venv/
+install/
 app/json/login.json
+build/
+dist/
+main.spec
+run.py
