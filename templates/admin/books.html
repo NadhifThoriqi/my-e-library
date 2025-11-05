@@ -58,19 +58,21 @@
                             <th data-key="category">Kategori</th>
                             <th data-key="stock">Stok</th>
                             <th data-key="available">Tersedia</th>
+                            <th style="display: none;">kode</th>
                             <th data-key="actions">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="book-list-body">
                         {%for x in books%}
                             <tr>
-                                <td>{{x}}</td>
+                                <td>{{books[x]['book_title']}}</td>
                                 <td>{{books[x]['isbn']}}</td>
                                 <td>{{books[x]['author']}}</td>
                                 <td><span class="category-tag category-{{books[x]['category']}}" data-key="{{books[x]['category']}}">{{books[x]['category']}}</span></td>
                                 <td>{{books[x]['stock']}}</td>
                                 <td>{{books[x]['stock']-books[x]['borrowed']}}</td>
-                                <td class="action-buttons">
+                                <td style="display: none;">{{x}}</td>
+                                <td class="action-book-buttons">
                                     <i class="fas fa-trash-alt delete-icon" title="Hapus"></i>
                                     <i class="fas fa-edit edit-icon" title="Edit"></i>
                                 </td>
@@ -82,7 +84,7 @@
         </main>
     </div>
     
-    <!-- Pop-up -->
+    <!-- Pop-up tambah buku-->
     <div class="modal-overlay hidden" id="addBookModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -143,6 +145,72 @@
             </div>
         </div>
     </div>
+
+    <!-- Pop-up Edit Buku -->
+    <div class="modal-overlay hidden" id="editBookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-key="editBook">Edit Buku</h2>
+                <button class="close-button" id="closeEditBookModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="editBookForm" method="post" action="/edit/book/">
+                    <input type="text" id="bookKode" name="book_kode">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editJudulBuku" data-key="bookTitle">Judul Buku</label>
+                            <input type="text" id="editJudulBuku" name="book_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPengarang" data-key="author">Pengarang</label>
+                            <input type="text" id="editPengarang" name="author">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editKategori" data-key="category">Kategori</label>
+                            <input type="text" id="editKategori" name="category" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editIsbn" data-key="isbn">ISBN</label>
+                            <input type="text" id="editIsbn" name="isbn" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editPenerbit" data-key="publisher">Penerbit</label>
+                            <input type="text" id="editPenerbit" name="publisher">
+                        </div>
+                        <div class="form-group">
+                            <label for="editTahun" data-key="year">Tahun</label>
+                            <input type="number" id="editTahun" name="year" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label for="editStok" data-key="stock">Stok</label>
+                            <input type="number" id="editStok" name="stock" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="editDeskripsi" data-key="description">Deskripsi</label>
+                        <textarea id="editDeskripsi" rows="4" name="description"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelEditBook" data-key="cancel">Batal</button>
+                        <button type="submit" class="btn btn-primary" data-key="save">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/admin.js') }}"></script>
 </body>

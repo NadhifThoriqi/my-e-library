@@ -9,7 +9,6 @@ body {
     color: #333;
 }
 
-
 a {
     text-decoration: none;
 }
@@ -444,12 +443,12 @@ th {
 .category-Self-Help { background-color: #e6fffb; color: #08979c; }
 
 /* Kolom Aksi */
-.action-buttons {
+.action-book-buttons, .action-member-buttons {
     display: flex;
     gap: 10px;
 }
 
-.action-buttons i {
+.action-book-buttons, .action-member-buttons i {
     cursor: pointer;
     font-size: 1.1em;
     padding: 5px;

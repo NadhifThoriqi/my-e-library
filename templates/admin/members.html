@@ -68,7 +68,7 @@
                                             <td>{{y}}</td>
                                             <td>{{data[x][y]["telepon"]}}</td>
                                             <td><span class="status status-{{data[x][y]['status']}}" data-member-status-key="{{data[x][y]['status']}}">------</span></td>
-                                            <td class="action-buttons">
+                                            <td class="action-member-buttons">
                                                 <i class="fas fa-edit edit-icon" title="Edit"></i>
                                                 <i class="fas fa-trash-alt delete-icon" title="Hapus"></i>
                                             </td>
@@ -83,6 +83,7 @@
         </main>
     </div>
 
+    <!-- Pop-up tambah Anggota -->
     <div class="modal-overlay hidden" id="addMemberModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,52 +91,121 @@
                 <button class="close-button" id="closeAddMemberModal"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
-                <form id="addMemberForm">
+                <form id="addMemberForm" method="post" action="/add/member">
                     <div class="form-row">
                         <div class="form-group full-width">
                             <label for="memberFullName" data-key="fullName">Nama Lengkap</label>
-                            <input type="text" id="memberFullName" required>
+                            <input type="text" name="name" id="memberFullName" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                          <div class="form-group">
                             <label for="memberEmail" data-key="email">Email</label>
-                            <input type="email" id="memberEmail" required>
+                            <input type="email" name="email" id="memberEmail" required>
                         </div>
                          <div class="form-group">
                             <label for="memberPhone" data-key="phone">Telepon</label>
-                            <input type="tel" id="memberPhone">
+                            <input type="tel" name="telepon" id="memberPhone">
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="memberAddress" data-key="address">Alamat</label>
-                            <input type="text" id="memberAddress">
+                            <input type="text" name="alamat" id="memberAddress">
                         </div>
                          <div class="form-group">
                             <label for="memberCity" data-key="city">Kota</label>
-                            <input type="text" id="memberCity">
+                            <input type="text" name="kota" id="memberCity">
                         </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="memberAddress" data-key="job">Pekerjaan</label>
+                            <input type="text" name="alamat" id="memberAddress">
+                        </div>
+                         <!-- <div class="form-group">
+                            <label for="memberCity" data-key="city">Kota</label>
+                            <input type="text" name="kota" id="memberCity">
+                        </div> -->
                     </div>
 
                     <div class="form-group full-width">
                         <label for="memberStatus" data-key="status">Status</label>
-                        <select id="memberStatus" required>
+                        <select id="memberStatus" name="status" required>
                             <option value="active" data-key="active">Aktif</option>
                             <option value="inactive" data-key="inactive">Nonaktif</option>
                         </select>
                     </div>
 
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cancelAddMember" data-key="cancel">Batal</button>
+                        <button type="submit" value="Kirim" class="btn btn-primary" data-key="save">Simpan</button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelAddMember" data-key="cancel">Batal</button>
-                <button class="btn btn-primary" data-key="save">Simpan</button>
             </div>
         </div>
     </div>
+
+    <!-- Pop-up Edit Anggota -->
+    <div class="modal-overlay hidden" id="editMemberModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-key="editMember">Edit Anggota</h2>
+                <button class="close-button" id="closeEditMemberModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="editMemberForm" method="post" action="/edit/member/">
+                    <input type="hidden" id="oldMemberEmail" name="old_email">
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="editMemberFullName" data-key="fullName">Nama Lengkap</label>
+                            <input type="text" id="editMemberFullName" name="name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editMemberEmail" data-key="email">Email</label>
+                            <input type="email" id="editMemberEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editMemberPhone" data-key="phone">Telepon</label>
+                            <input type="tel" id="editMemberPhone" name="telepon">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editMemberAddress" data-key="address">Alamat</label>
+                            <input type="text" id="editMemberAddress" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="editMemberCity" data-key="city">Kota</label>
+                            <input type="text" id="editMemberCity" name="city">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="editMemberStatus" data-key="status">Status</label>
+                        <select id="editMemberStatus" name="status" required>
+                            <option value="active" data-key="active">Aktif</option>
+                            <option value="inactive" data-key="inactive">Nonaktif</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelEditMember" data-key="cancel">Batal</button>
+                        <button type="submit" class="btn btn-primary" data-key="save">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <script src="{{ url_for('static', filename='scripts/language.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/admin.js') }}"></script>

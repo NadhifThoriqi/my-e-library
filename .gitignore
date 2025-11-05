@@ -7,3 +7,5 @@ build/
 dist/
 main.spec
 run.py
+app_flask.py
+app_install.py

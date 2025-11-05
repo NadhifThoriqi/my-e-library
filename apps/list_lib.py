@@ -23,13 +23,21 @@ class Data:
         lib.update(add)
         return self.saves(config_file, lib)
     
-    def deleads(self, file: str, delead: str):
+    def deleads(self, file: str, delead: str, key: str|None=None):
         config_file = f'apps/json/{file}.json'
         data = self.gets(file)
-        data.pop(delead, None)
+        if key:
+            data_key = data[key]
+            print(key)
+            data_key.pop(delead, None)
+        else:
+            data.pop(delead, None)
         return self.saves(config_file, data)
 
 class Login:
+    def __init__(self):
+        pass
+
     def list(self):
         return Data().gets("login")
 
@@ -42,22 +50,43 @@ class Login:
 
     def room(self, key: str|None=None):
         if key:
-            keys, _ = self.emailKey(key)
+            keys, __ = self.emailKey(key)
             if "admin" in keys:
                 return ["dashboard", "books", "members", "reports"]
             elif "staff" in keys:
                 return ["dashboard", "books", "borrow_book", "return_book"]
             elif "member" in keys:
                 return ["dashboard", "check_fines", "search", "transaction"]
-        else:
-            return["dashboard", "books", "members", "reports", "borrow_book", "return_book", "check_fines", "search", "transaction"]
+        else: pass
+        #     return["dashboard", "books", "members", "reports", "borrow_book", "return_book", "check_fines", "search", "transaction"]
    
+class Books:
+    def __init__(self):
+        self.data = Data().gets(libs="books")
+
+    def total(self):
+        i = 0
+        for x in self.data.keys():
+            i += self.data[x]["stock"]
+        return i
+    
+    def borrowed(self):
+        i = 0
+        for x in self.data.keys():
+            i += self.data[x]["borrowed"]
+        return i
+
 class Error:
     def __init__(self, status: str):
         self.status_codes=status
     
     # def errorCode(self):
     def call(self):
-        for x in Data.gets("error.code"):
+        for x in Data().gets("error.code"):
             if x == self.status_codes:
-                return [y for y in Data.gets("error.code")[x].values()]
+                return [y for y in Data().gets("error.code")[x].values()]
+            
+# email = "nadhifthoriqi@gmail.com"
+# status, __ = Login().emailKey(key=email)
+# print(email, status)
+# Data().deleads("login", delead=email, key=status)
