@@ -17,6 +17,12 @@
         "respon" : "Klik tombol di bawah untuk kembali ke Dashboard."
     },
 
+    "500": {
+        "judul": "Maaf, Terjadi Kesalahan Server Internal",
+        "isi": "Kami mohon maaf. Server kami mengalami kesalahan tak terduga saat memproses permintaan Anda. Kami sedang berupaya memperbaiki masalah ini secepat mungkin.",
+        "respon": "Silakan coba muat ulang halaman dalam beberapa saat. Jika masalah terus berlanjut, hubungi tim dukungan kami."
+    },
+
     "503": {
         "judul": "Servernya Sedang Istirahat",
         "isi": "Sepertinya server kami butuh sedikit waktu untuk mengambil napas. Ini hanya sementara.",

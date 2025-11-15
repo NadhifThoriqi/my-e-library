@@ -12,7 +12,7 @@ class Data:
                 return json.load(x)
         except: return {"Gagal": None}
 
-    def saves(self, config_file: str, lib):
+    def saves(self, config_file: str, lib: dict):
         with open(config_file , "w") as f:
             json.dump(lib, f, indent=4)
         return
@@ -36,13 +36,18 @@ class Data:
 
 class Login:
     def __init__(self):
-        pass
+        self.data = Data().gets("login")
 
     def list(self):
-        return Data().gets("login")
+        return self.data
+
+    def add(self, key: str, adds: dict):
+        config_file = f'apps/json/login.json'
+        self.data[key].update(adds)
+        return Data().saves(config_file, self.data)
 
     def emailKey(self, key: str | None = None): 
-        data = self.list()
+        data = self.data
         for y in data.keys():
             for z in data[y].keys():
                 if z == key:
@@ -57,8 +62,8 @@ class Login:
                 return ["dashboard", "books", "borrow_book", "return_book"]
             elif "member" in keys:
                 return ["dashboard", "check_fines", "search", "transaction"]
-        else: pass
-        #     return["dashboard", "books", "members", "reports", "borrow_book", "return_book", "check_fines", "search", "transaction"]
+        else: 
+            return["dashboard", "books", "members", "reports", "borrow_book", "return_book", "check_fines", "search", "transaction"]
    
 class Books:
     def __init__(self):

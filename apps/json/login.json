@@ -5,6 +5,12 @@
             "password": "admin123",
             "telepon": "085293159782",
             "status": "active"
+        },
+        "nadhifthoriqii@admin.com": {
+            "name": "Nadhif Thoriqi",
+            "password": "admin123",
+            "telepon": "085293159782",
+            "status": "active"
         }
     },
     "staff": {
@@ -15,5 +21,20 @@
             "status": "active"
         }
     },
-    "member": {}
+    "member": {
+        "nadhifthoriqii@gmail.com": {
+            "name": "Nadhif Thoriqi",
+            "password": "123",
+            "telepon": "085293159782",
+            "alamat": "Trangkil",
+            "status": "active"
+        },
+        "nadhifthoriqi@gmail.com": {
+            "name": "Nadhif Thoriqi",
+            "password": "123",
+            "telepon": "085293159782",
+            "alamat": "Trangkil",
+            "status": "active"
+        }
+    }
 }

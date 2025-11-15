@@ -63,7 +63,16 @@
                                 {%if x not in []%}
                                     {%for y in data[x].keys()%}
                                         <tr>
-                                            <td>{{loop.index}}</td>
+                                            <td>
+                                                {%if x == "admin"%}
+                                                    1.
+                                                {%elif x == "staff"%}
+                                                    2.
+                                                {%else%}
+                                                    3.
+                                                {%endif%}
+                                                {{loop.index}}
+                                            </td>
                                             <td>{{data[x][y]["name"]}}</td>
                                             <td>{{y}}</td>
                                             <td>{{data[x][y]["telepon"]}}</td>

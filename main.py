@@ -80,7 +80,6 @@ def ver(room: str= "dashboard"):
         return render_template(f"{status}/{room}.html", name=name, email=email, data=data, books=books, total=[total, borrowed])
     else: 
         abort(403 if room in apps.Login().room() else 404)
-    # else: return redirect(url_for("error404", error=room))
     
 @app.route("/<type>/<path>/", methods=["POST"])
 def add(type, path):
@@ -126,11 +125,16 @@ def add(type, path):
                 status = request.form["status"]
                 job = request.form["job"]
                 login = {
-                    job: {
-                        
+                    email: {
+                        "name": name,
+                        "password": "123",
+                        "telepon": telepon,
+                        "alamat": alamat,
+                        "status": status
                     }
                 }
-                return abort(405)
+                apps.Login().add(job, login)
+                return redirect(url_for("ver", room="members")) 
         else: abort(404)
 
 @app.route("/delead/<path>/", methods=["POST"])
@@ -199,14 +203,26 @@ def handle_405_error(e):
             "ket": f"{request.path}, {request.method}"
         }), 405
 
+@app.errorhandler(ZeroDivisionError)
+def error500(e):
+    text = apps.Error("500").call()
+    return render_template("errorCode.html", error="500", text=text, back="Dashboard"), 500
+
 @app.errorhandler(503)
 def error503(e):
     text = apps.Error("503").call()
     return render_template("errorCode.html", error="503", text=text), 503
 
+# Contoh rute yang mungkin memicu 500
+@app.route('/error-test/')
+def error_test():
+    # Contoh kesalahan yang tidak tertangkap
+    result = 1 / 0 
+    return "Ini tidak akan pernah tercapai"
+
 def run_flask():
     # return app.run(debug=True, host="0.0.0.0", port=2601)
-    return app.run(debug=False, port=2601)
+    return app.run(port=2601)
 
 if __name__ == "__main__":
     run_flask()
