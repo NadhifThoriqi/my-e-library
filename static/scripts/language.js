@@ -10,17 +10,25 @@ let currentState = {
     lang: 'id'
 };
 
+const Data = {"key": "language"}
+
 // Ambil data bahasa dari API
-fetch('/api/data/language')
-  .then(response => response.json())
-  .then(data => {
-    translations = new Map(Object.entries(data));
-    console.log("Translations loaded:", translations);
-    updateLanguage(currentState.lang);
-  })
-  .catch(err => {
-    console.error("Gagal memuat translations.json:", err);
-  });
+fetch('/api/data/language', { 
+    method: 'POST', // Tentukan metode
+    headers: {
+        'Content-Type': 'application/json' // Beri tahu server tipe data yang dikirim
+    },
+    body: JSON.stringify(Data) // Ubah objek JS menjadi string JSON
+})
+    .then(response => response.json())
+    .then(data => {
+        translations = new Map(Object.entries(data));
+        console.log("Translations loaded:", translations);
+        updateLanguage(currentState.lang);
+    })
+    .catch(err => {
+        console.error("Gagal memuat translations.json:", err);
+    });
 
 /**
  * Memperbarui semua elemen teks di UI berdasarkan bahasa yang dipilih.

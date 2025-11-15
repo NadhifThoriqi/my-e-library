@@ -1,6 +1,7 @@
 __pycache__/
 test/
 .venv/
+.lin/
 install/
 app/json/login.json
 build/

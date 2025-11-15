@@ -3,7 +3,7 @@ from itsdangerous import URLSafeTimedSerializer
 from markupsafe import escape
 from datetime import timedelta
 from threading import Thread
-import json, webview, time, apps
+import json, time, apps
 
 app = Flask(__name__)
 app.secret_key = "TmFkaGlmX1Rob3JpcWk="
@@ -19,15 +19,17 @@ def make_session_paramenent():
     session.permanent = True  # jadikan session permanent
     session.modified = True   # tandai bahwa session diperbarui waktunya
 
-@app.route('/api/data/language/')
+@app.route('/api/data/language/', methods=["GET", "POST"])
 def language():
     try:
-        with open('static/Language/language.json', 'r') as f:
-            data = json.load(f)
-        return jsonify(data)
+        data = request.get_json() or "None"
+        if data.get('key') == "language":
+            with open('static/Language/language.json', 'r') as f:
+                data = json.load(f)
+            return jsonify(data)
     except:
-        return jsonify({"message": "Error loading data"})
-
+        return render_template("index.html")
+        
 @app.route("/")
 def home():
     try:
@@ -85,10 +87,7 @@ def add(type, path):
     if request.method == "POST":
         if type in ["add", "edit"] and path in ["book", "member"]: 
             if path == "book":
-                if type == "edit":
-                    book_kode = request.form["book_kode"]
-                else:
-                    book_kode = time.strftime("%H%M%S%d%m%Y")
+                book_kode = request.form["book_kode"] if type == "edit" else time.strftime("%H%M%S%d%m%Y")
                 book_title = request.form["book_title"]
                 author = request.form["author"]
                 category = request.form["category"]
@@ -125,6 +124,12 @@ def add(type, path):
                 alamat = request.form["alamat"]
                 kota = request.form["kota"]
                 status = request.form["status"]
+                job = request.form["job"]
+                login = {
+                    job: {
+                        
+                    }
+                }
                 return abort(405)
         else: abort(404)
 
@@ -144,7 +149,6 @@ def delead(path):
             return redirect(url_for("ver", room="members"))
         else: return abort(404)
 
-
 @app.errorhandler(401)
 def error401(e):
     text = apps.Error("401").call()
@@ -160,6 +164,7 @@ def error404(e):
     text = apps.Error("404").call()
     return render_template("errorCode.html", error="404", text=text, back="Dashboard"), 404
 
+@app.errorhandler(405)
 def handle_405_error(e):
     # Daftar metode yang diizinkan di setiap endpoint (bisa kamu ubah sesuai program)
     allowed_routes = {
@@ -190,7 +195,8 @@ def handle_405_error(e):
                 "Terjadi kesalahan konfigurasi backend. "
                 "Periksa definisi route atau metode HTTP yang diizinkan."
             ),
-            "hint": "Pastikan endpoint sudah terdaftar dan memiliki metode yang sesuai."
+            "hint": "Pastikan endpoint sudah terdaftar dan memiliki metode yang sesuai.",
+            "ket": f"{request.path}, {request.method}"
         }), 405
 
 @app.errorhandler(503)
