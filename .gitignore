@@ -3,7 +3,7 @@ test/
 .venv/
 .lin/
 install/
-app/json/login.json
+apps/json/login.json
 build/
 dist/
 main.spec

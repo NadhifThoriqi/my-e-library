@@ -13,14 +13,33 @@ def cek_folder(name, default: dict):
 cek_folder(
     name="login",
     default = {
-        "status": {
+        "admin": {
+            "admin@admin.com": {
+                "name": "@admin", 
+                "password": "admin123",
+                "telepon": "08**********",
+                "status": ""
+            }
+        },
+        "staff": {
             "email": {
                 "name": "", 
-                "password": ""
+                "password": "",
+                "telepon": "",
+                "status": ""
+            }
+        },
+        "member": {
+            "email": {
+                "name": "", 
+                "password": "",
+                "telepon": "",
+                "status": ""
             }
         }
     }
 )
+
 cek_folder(
     name="books",
     default={
